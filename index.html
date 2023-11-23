@@ -40,20 +40,100 @@
 		<h1 class="masthead">Time of Day</h1>
 	</header>
     <main>
-	 <header><h3>A JavaScript Project by YOUR NAME HERE</h3></header>
-	    <p>Explain what your page does and how it works here!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
+	 <header><h3>A JavaScript Project by Michelle Nguyen</h3></header>
+	 <h3 id="my-greeting">Good Morning</h3>
+	    <p>
+			Welcome to my Time of Day JavaScript project! This webpage dynamically adjusts its appearance based on the current time. 
+			From personalized greetings to unique colors and images, the page transforms to reflect whether it's morning, afternoon, evening, or night. 
+			Experience a tailored display that changes with the time of day, all powered by JavaScript.	
+		</p>
+	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible" id="my-pic">
      <footer>
-      <p><small>&copy; 2022 by 
-          YOUR NAME HERE, All Rights Reserved ~ 
-          <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
-          <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
+      <p><small id="copyright">
+		&copy; 2022 by Michelle Nguyen, All Rights Reserved ~ 
+		<a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
+		<a id="css-checker" href="#" target="_blank">Check CSS</a>
+	</small>
      </p>
     </footer>
   </main>
  <script>
+
+	/*
+
+		Deliverable: Create a web page that uses JavaScript to determine the current hour, and presents a different image, custom message, and color based on each of the following times of day:
+		
+		Morning (5am to 12 noon)
+		Afternoon (12 noon to 6pm)
+		Evening (6pm to 11pm)
+		Night (11pm to 5am)
+		
+		Criteria: The three items above (color, image, message) must be unique for each of the 4 time periods of the day.
+
+	*/
+
+
+
+
+
+
+	let myDate = new Date();
+	let myHour = myDate.getHours();
+	let myGreeting = "";
+	let Color = "";
+	let myPic = "";
+
+
+
+	if(myHour >= 5 && myHour < 12){//morning
+		myGreeting = "Good Morning!";
+		myColor = "#FF7F50";
+		myPic = "morning.jpg";
+	
+
+	} else if(myHour >= 12 && myHour < 18){
+		myGreeting = "Good Afternoon!";
+		myColor = "#9ACD32";
+		myPic = "afternoon.jpg";
+
+	}else if (myHour >= 18 && myHour < 24){
+		myGreetings = "Good Evening!";
+		myColor = "#00CED1";
+		myPic = "evening.jpg";
+
+	}else{//night
+		myGreeting = "Good Night!";
+		myColor = "#663399";
+		myPic = "night.jpg";
+
+
+	}
+
+	// pre-pend the images path
+	myPic = "images/" + myPic;
+
+	//custom message
+	document.getElementById("my-greeting").innerHTML = myGreeting;
+
+
+	//custom color
+	document.querySelector("html").style.backgroundColor = myColor;
+
+	// custom pic
+	document.getElementById("my-pic").src = myPic;
+
+
+
+
+
     document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
     document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
+
+	let currentYear = new Date().getFullYear();
+    let copyrightText = document.getElementById('copyright');
+    let existingText = copyrightText.innerHTML;
+    let updatedText = existingText.replace('2022', `2022-${currentYear}`);
+    copyrightText.innerHTML = updatedText;
  </script>
 </body>
 </html>
